@@ -17,7 +17,7 @@ class Game:
             if event.type == pygame.QUIT:
                 return COMMAND_QUIT
 
-        self.player.update(delta)
+        self.player.update(delta, self.tiles)
         for tile in self.tiles:
             tile.update(delta, self.camera_speed.x)
 
