@@ -8,7 +8,7 @@ class Game:
 
     def __init__(self):
         self.player = Player()
-        self.tiles = [Tile((SCREEN_WIDTH/2, SCREEN_HEIGHT/2))]
+        self.tiles = [Tile((i, SCREEN_HEIGHT - Tile.height)) for i in range(0, SCREEN_WIDTH * 3, Tile.width)]
         self.camera_speed = pygame.Vector2(300, 0)    
 
     def update(self, delta):
