@@ -1,7 +1,7 @@
 from setup import *
 from game import Game
 
-scene = Game()
+scene = Game('level1')
 
 delta_time = 0
 last_time = pygame.time.get_ticks()
@@ -16,6 +16,9 @@ while is_running:
     status = scene.update(delta_time)
     if status == COMMAND_QUIT:
         is_running = False
+
+    elif status == COMMAND_RESTART:
+        scene = Game("level1")
         
     scene.draw(screen)
 

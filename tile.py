@@ -19,4 +19,5 @@ class Tile:
         pygame.draw.rect(screen, self.outline_colour, (self.position.x, self.position.y, self.width, self.height),
                           self.outline_width)
 
-        
+class HalfTile(Tile):
+    height = 25
