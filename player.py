@@ -5,9 +5,12 @@ class Player:
     width, height = 50, 50
     gravity = pygame.Vector2(0, 1900)
     colour = (255, 0, 0)
+
     outline_color = (128, 0, 0)
     outline_width = 4
 
+    jump_velocity = -715
+    jump_cooldown = 0.25
 
     def __init__(self):
         self.position = pygame.Vector2(SCREEN_WIDTH//5, SCREEN_HEIGHT*2//3)
