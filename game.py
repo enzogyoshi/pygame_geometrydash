@@ -31,6 +31,8 @@ class Game:
                         self.tiles.append(HalfTile((x * Tile.width, y * Tile.height)))
                     elif tile_type == "3":
                         self.spikes.append(Spike((x * Tile.width, y * Tile.height), 0))
+                    elif tile_type == "4":
+                        self.spikes.append(Spike((x * Tile.width, y * Tile.height), 180))
 
     def update(self, delta):
         for event in pygame.event.get():
