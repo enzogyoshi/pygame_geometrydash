@@ -10,8 +10,11 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 COMMAND_QUIT = 0
 COMMAND_RESTART = 1
+COMMAND_WIN = 3
 
 PLAYER_DEAD = 2
+
+ATTEMPTS = 1
 
 pygame.display.set_caption("Jumping Cube")
 

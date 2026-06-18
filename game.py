@@ -5,35 +5,34 @@ from spike import Spike
 
 class Game:
 
-
-
     def __init__(self, level):
         self.player = Player()
         self.tiles = []
         self.spikes = []
 
         self.camera_speed = pygame.Vector2(480, 0)   
-
         self.level = level
+        self.level_width = 0
         self.import_level()
+        
+
 
     def import_level(self):
-        with open('pygame_geometrydash/levels/' + self.level + '.txt') as f:
+        with open('levels/' + self.level + '.txt') as f:
             lines = f.readlines()
             for y, line in enumerate(lines):
-                for x, tile_type in enumerate(line.replace(",", "")):
+                tile_list = line.strip().split(',')
+                self.level_width = max(self.level_width, len(tile_list) * Tile.width)
+                
+                for x, tile_type in enumerate(tile_list):
                     if tile_type == "1":
                         self.tiles.append(Tile((x * Tile.width, y * Tile.height)))
                     elif tile_type == "2":
                         self.tiles.append(HalfTile((x * Tile.width, y * Tile.height)))
                     elif tile_type == "3":
-                        self.tiles.append(Spike((x * Tile.width, y * Tile.height), 0))
-
-
-
+                        self.spikes.append(Spike((x * Tile.width, y * Tile.height), 0))
 
     def update(self, delta):
-        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return COMMAND_QUIT
@@ -48,6 +47,9 @@ class Game:
         for spike in self.spikes:
             spike.update(delta, self.camera_speed.x)
 
+        if len(self.tiles) > 0 and self.tiles[-1].position.x < self.player.position.x - 200:
+            return COMMAND_WIN
+
     def draw(self, delta):
         screen.fill((0, 0, 0))
         self.player.draw(screen)
@@ -55,4 +57,3 @@ class Game:
             tile.draw(screen)
         for spike in self.spikes:
             spike.draw(screen)
-        
